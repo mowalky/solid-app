@@ -1,9 +1,14 @@
 import type { Component } from "solid-js";
-import { createSignal } from "solid-js";
+import { createSignal, createEffect } from "solid-js";
 
 const App: Component = () => {
   const [count, setCount] = createSignal(2);
   let doubleCount = () => count() * 2;
+
+  createEffect(() => {
+    console.log(doubleCount());
+  });
+
   return (
     <div>
       {count} ({doubleCount})
