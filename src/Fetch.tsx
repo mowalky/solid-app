@@ -1,5 +1,5 @@
-import type { Component } from "solid-js";
-import { createSignal, createResource, For } from "solid-js";
+import { Component, Suspense } from "solid-js";
+import { createSignal, createResource, For, Show } from "solid-js";
 
 const Fetch: Component = () => {
   const [slug, setSlug] = createSignal(false);
@@ -28,12 +28,14 @@ const Fetch: Component = () => {
         </For>
       </select>
       <hr />
-      {episode() && (
-        <div>
-          <h1>{episode().title}</h1>
-          <p>{episode().description}</p>
-        </div>
-      )}
+      <Suspense fallback={<p>loading...</p>}>
+        <Show when={episode()}>
+          <div>
+            <h1>{episode().title}</h1>
+            <p>{episode().description}</p>
+          </div>
+        </Show>
+      </Suspense>
     </>
   );
 };
