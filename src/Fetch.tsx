@@ -2,9 +2,7 @@ import type { Component } from "solid-js";
 import { createSignal, createResource, For } from "solid-js";
 
 const Fetch: Component = () => {
-  const [slug, setSlug] = createSignal(
-    "custom-media-players-with-media-chrome"
-  );
+  const [slug, setSlug] = createSignal(false);
 
   const [schedule] = createResource(async () => {
     const getData = await fetch(`https://www.learnwithjason.dev/api/schedule`);
@@ -30,7 +28,12 @@ const Fetch: Component = () => {
         </For>
       </select>
       <hr />
-      {JSON.stringify(episode())}
+      {episode() && (
+        <div>
+          <h1>{episode().title}</h1>
+          <p>{episode().description}</p>
+        </div>
+      )}
     </>
   );
 };
