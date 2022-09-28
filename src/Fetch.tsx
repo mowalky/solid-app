@@ -19,7 +19,7 @@ const Fetch: Component = () => {
   });
 
   return (
-    <>
+    <div style={{ padding: "15px" }}>
       <select onChange={(e: any) => setSlug(e.target.value)}>
         <For each={schedule()}>
           {(item: any) => (
@@ -36,7 +36,7 @@ const Fetch: Component = () => {
           </div>
         </Show>
       </Suspense>
-    </>
+    </div>
   );
 };
 
